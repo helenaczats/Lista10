@@ -3,7 +3,7 @@ import pytest
 import requests 
 from utils.utils import ler_csv      
 
-       
+user_id = 145768701      
 user_username = "Lola"        
 user_firstName = "Lorena"        
 user_lastName = "Albuquerque"  
@@ -34,7 +34,7 @@ def test_post_user():
     assert response.status_code == 200
     assert response_body["code"] == 200  
     assert response_body["type"] == "unknown"
-    assert response_body["message"] == str(145768901)    
+    assert response_body["message"] == str(user_id)
     
     
 def test_get_user():
@@ -42,13 +42,12 @@ def test_get_user():
     response = requests.get(
         url = f"{url}/{user_username}",  
         headers = headers
-      
     )
     
     response_body = response.json()
     
     assert response.status_code == 200
-    assert response_body["id"] == 145768901 
+    assert response_body["id"] == user_id 
     assert response_body["username"] == user_username
     assert response_body["firstName"] == user_firstName
     assert response_body["lastName"] == user_lastName
@@ -75,7 +74,7 @@ def test_put_user():
     assert response.status_code == 200
     assert response_body["code"] == 200
     assert response_body["type"] == "unknown"
-    assert response_body["message"] == str(145768602) 
+    assert response_body["message"] == str(user_id)
     
 def test_delete_user():
     
